@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -8,7 +9,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <meta charset="utf-8">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Caveat" >
-    <link  rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat+Subrayada">
+    
 
     
     
@@ -17,108 +18,138 @@
    
   </head>
   <body>
-  
+      <header>
+          <div class="itme wrapper">
+              <div class="a_itme">
+              <ul>
+                  <li><a href="https://hiroll44.github.io/https-HiRoLL44.github.io-About/">ABOUT</a></li>
+              
+              </ul>
+              </div>
 
-
+           </div>
+           
+      </header>
 
       <main>
-        
-       
+          <div class="bubble-background">
+              <div class="grab wrapper">
+
+              <div class="name wrapper">
+
+                   <div class="profile">
+                      <h1>HiRoll</h1> 
+                  </div>
+                  <div class="picture">
+                      <img src="Screenshot_20210420-141606_LINE.jpg" alt="自分の写真">
+                  </div>
+              </div>
 
 
-        <div class="hobby">
-          <div class="itme wrapper">
-            <div class="a_itme">
-                   <ul>
-                <li><a href="https://hiroll44.github.io/https-HiRoLL44.github.io-About/">top</a></li>
-            </ul>
-            </div>
-  
-         </div>
-         
-          <h1>HOBBY</h1>
-        </div>
+
+              <div class="Dialogue wrapper">
+                  <p>WEBデザイナーになろうとして日々勉強中のHiRollです！<br>最近活動を始めたばかりなので万々仕事を引き受けていこうと思っているので気になったら
+                      ぜひご連絡お待ちしております！！気になることなどご連絡はDMでお待ちしております。
+                    </p>
+                    <ul>
+                        <li><a id="twitter" href="https://twitter.com/hiroll12?s=09"><i class="fab fa-twitter"></i>twitter</a></li>
+                       <!--まだ作っていない
+                    <li><a id="instagram" href="#"><i class="fab fa-instagram"></i>instagran</a></li>  --> 
+                    </ul>
+                    
+              </div>
 
 
-          <div class="content">
-          <h1>I have</h1>
-        </div>
 
 
-        <div class="have">
-          <div class="detile wrapper">
-             <p>最近私はベタの飼育にとてもはまっていていま4匹飼っています<br>毎日の餌やりがとてもかわいくて癒されています</p>
+              </div>
           </div>
-         
-        </div>
+          <!--泡のアニメーションの終わり-->
 
-        <div class="a_content">
-          <h1>GAME</h1>
-      </div>
-      <div class="game">
-        <div class="sdfs wrapper">
-          <p>モーハンだったり最近ではFPSのゲームにはまっていて<br>時間があるときなどは大体ゲームするくらい好きです</p>
-        </div>
-
-      </div>
-
-
-        
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-          <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/85188/jquery.ripples-min.js"></script>
       </main>
+   
+
+
+      <!--Javascript-->
+
+      <script>
+          document.addEventListener('DOMContentLoaded', () => {
+  // コンテナを指定
+  const section = document.querySelector('.bubble-background');
+
+  // 泡を生成する関数
+  const createBubble = () => {
+    const bubbleEl = document.createElement('span');
+    bubbleEl.className = 'bubble';
+    const minSize = 10;
+    const maxSize = 30;
+    const size = Math.random() * (maxSize + 1 - minSize) + minSize;
+    bubbleEl.style.width = `${size}px`;
+    bubbleEl.style.height = `${size}px`;
+    bubbleEl.style.left = Math.random() * innerWidth + 'px';
+    section.appendChild(bubbleEl);
+
+    var color = {r:0, g:0, b:0};    // RGB 0～255の値で設定
+    for(var i in color){
+        color[i] = Math.floor(Math.random() * 256);
+    }
+    
+    var baColor = "rgb(" + color.r + ", " + color.g + ", " + color.b +", " + 0.9 + ")";
+    bubbleEl.style.backgroundColor = baColor;
+
+    
+    
+
+
+
+    // 一定時間が経てば泡を消す
+    setTimeout(() => {
+      bubbleEl.remove();
+    }, 8000);
+
+    
+
+  }
+
+  // 泡の生成を開始するトリガー（初期値はOFF）
+  let activeBubble = null;
+
+  // 泡の生成をストップする関数
+  const stopBubble = () => {
+    clearInterval(activeBubble);
+  };
+
+  // Intersection observerに渡すコールバック関数
+const cb = (entries) => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting) { // コンテナが画面内に入っているときの処理
+      activeBubble = setInterval(createBubble, 50);
+    } else { // コンテナが画面外にあるときの処理
+      stopBubble();
+    };
+  });
+};
+// Intersection observerに渡すオプション
+const options = {
+  rootMargin: "100px 0px"
+}
+// Intersection observerの初期化
+const io = new IntersectionObserver(cb, options);
+io.POLL_INTERVAL = 100; // Polyfill
+io.observe(section);
 
 
 
 
 
-        
-      
-      <!--時間で動くスライド
 
-        html    <img src="https://cdn.pixabay.com/photo/2019/10/05/03/51/nature-4526925_960_720.jpg" id="slideshow">
-        
-        
-       js     const images = ["https://cdn.pixabay.com/photo/2019/10/05/03/51/nature-4526925_960_720.jpg","https://images.pexels.com/photos/2707010/pexels-photo-2707010.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260","https://cdn.pixabay.com/photo/2019/06/11/13/23/betta-fish-yellow-4267040_960_720.jpg"];
-        let count = 0;
-        function slideshow_timer () {
-          if( count >= images.length){
-            count = 0;
-          }else{
-            document.getElementById('slideshow').src = images[count];
-            count++;
-          }
-        }
-        setInterval(slideshow_timer, 3000);-->
-
-    <script >
-        //スライドアニメーション
-        
+  
+});
 
 
 
+      </script>
 
 
-
-
-
-
-
-
-    </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-      <script src="script.js"></script>
   </body>
 </html>
